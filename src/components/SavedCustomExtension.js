@@ -37,7 +37,7 @@ function SavedCustomExtension(props) {
 
   const deleteCustom = () => {
     axios
-      .delete(`http://localhost:8080/api/extensions/${props.id}`)
+      .delete(`${process.env.REACT_APP_DEV_HOST}/api/extensions/${props.id}`)
       .then((res) => {
         if (res.data.code === "S0001") setCount(count - 1);
       })

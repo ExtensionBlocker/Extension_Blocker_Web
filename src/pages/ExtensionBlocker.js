@@ -100,7 +100,8 @@ function ExtensionBlocker() {
   const [count, setCount] = useState(0);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/extensions/count")
+      // .get("http://localhost:8080/api/extensions/count")
+      .get(`${process.env.REACT_APP_DEV_HOST}/api/extensions/count`)
       .then((res) => {
         setCount(res.data.data.customExtensionCount);
       })
@@ -113,7 +114,7 @@ function ExtensionBlocker() {
   const [customList, setCustomList] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/extensions")
+      .get(`${process.env.REACT_APP_DEV_HOST}/api/extensions`)
       .then((res) => {
         setCustomList(res.data.data.customExtensionList);
       })
@@ -140,7 +141,7 @@ function ExtensionBlocker() {
   // 커스텀 확장자 등록 로직
   const onClick = () => {
     axios
-      .post("http://localhost:8080/api/extensions", {
+      .post(`${process.env.REACT_APP_DEV_HOST}/api/extensions`, {
         name: text,
         type: type,
       })

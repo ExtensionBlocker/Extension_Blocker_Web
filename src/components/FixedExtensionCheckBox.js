@@ -28,7 +28,9 @@ function FixedExtensionCheckBox(props) {
     if (isChecked) {
       const object = JSON.parse(localStorage.getItem(name));
       axios
-        .delete(`http://localhost:8080/api/extensions/${object.key}`)
+        .delete(
+          `${process.env.REACT_APP_DEV_HOST}/api/extensions/${object.key}`
+        )
         .then((res) => {
           console.log(res.data);
           window.localStorage.removeItem(name);
@@ -38,7 +40,7 @@ function FixedExtensionCheckBox(props) {
         });
     } else {
       axios
-        .post("http://localhost:8080/api/extensions", {
+        .post(`${process.env.REACT_APP_DEV_HOST}/api/extensions`, {
           name: name,
           type: type,
         })
