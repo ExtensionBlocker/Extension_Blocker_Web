@@ -85,11 +85,26 @@ const CustomExtensionCount = styled.div`
 
 function ExtensionBlocker() {
   // 고정 확장자 렌더링 로직
+
+  const [fixedCustom, setFixedCustom] = useState([]);
+  axios
+    .get(`${process.env.REACT_APP_DEV_HOST}/api/extensions/fixed`)
+    .then((res) => {
+      setFixedCustom(res.data.data);
+    });
+
+  // const FixedExtension = ExtensionList.map((name) => (
+  //   <FixedExtensionCheckBox
+  //     key={name}
+  //     value={name}
+  //     checked={localStorage.getItem(name) != null}
+  //   ></FixedExtensionCheckBox>
+  // ));
   const FixedExtension = ExtensionList.map((name) => (
     <FixedExtensionCheckBox
       key={name}
       value={name}
-      checked={localStorage.getItem(name) != null}
+      checked={fixedCustom.includes(name)}
     ></FixedExtensionCheckBox>
   ));
 
