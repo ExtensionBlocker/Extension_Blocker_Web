@@ -84,11 +84,6 @@ const CustomExtensionCount = styled.div`
 `;
 
 function ExtensionBlocker() {
-  const host =
-    window.location.hostname === "localhost"
-      ? process.env.REACT_APP_DEV_HOST
-      : "api";
-
   // 고정 확장자 렌더링 로직
   const FixedExtension = ExtensionList.map((name) => (
     <FixedExtensionCheckBox
@@ -105,7 +100,7 @@ function ExtensionBlocker() {
   const [count, setCount] = useState(0);
   useEffect(() => {
     axios
-      .get(`${host}/api/extensions/count`)
+      .get(`${process.env.REACT_APP_DEV_HOST}/api/extensions/count`)
       .then((res) => {
         setCount(res.data.data.customExtensionCount);
       })
