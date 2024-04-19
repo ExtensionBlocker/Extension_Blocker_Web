@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import cancelImg from "../assets/cancelImg.png";
 import axios from "axios";
@@ -38,6 +38,7 @@ function SavedCustomExtension(props) {
       .delete(`${process.env.REACT_APP_DEV_HOST}/api/extensions/${props.id}`)
       .then((res) => {
         if (res.data.code === "S0001") {
+          console.log(res.data.message);
           props.setCount(props.count - 1);
         }
       })

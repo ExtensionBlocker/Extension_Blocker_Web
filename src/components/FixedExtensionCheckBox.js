@@ -32,7 +32,7 @@ function FixedExtensionCheckBox(props) {
           `${process.env.REACT_APP_DEV_HOST}/api/extensions/${object.key}`
         )
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data.message);
           window.localStorage.removeItem(name);
         })
         .catch((err) => {
@@ -45,8 +45,11 @@ function FixedExtensionCheckBox(props) {
           type: type,
         })
         .then((res) => {
-          console.log(res.data);
-          localStorage.setItem(name, JSON.stringify({ key: res.data.data }));
+          console.log(res.data.message);
+          window.localStorage.setItem(
+            name,
+            JSON.stringify({ key: res.data.data })
+          );
         })
         .catch((err) => {
           console.log("고정확장자를 추가할 수 없습니다.\n" + err);

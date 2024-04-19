@@ -145,6 +145,7 @@ function ExtensionBlocker() {
         type: type,
       })
       .then((res) => {
+        console.log(res.data.message);
         if (res.data.code === "S0001") setCount(count + 1);
       })
       .catch(() => {
