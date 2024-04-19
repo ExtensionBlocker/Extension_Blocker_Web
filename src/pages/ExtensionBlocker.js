@@ -100,7 +100,6 @@ function ExtensionBlocker() {
   const [count, setCount] = useState(0);
   useEffect(() => {
     axios
-      // .get("http://localhost:8080/api/extensions/count")
       .get(`${process.env.REACT_APP_DEV_HOST}/api/extensions/count`)
       .then((res) => {
         setCount(res.data.data.customExtensionCount);
