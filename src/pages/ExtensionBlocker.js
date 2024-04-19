@@ -85,26 +85,11 @@ const CustomExtensionCount = styled.div`
 
 function ExtensionBlocker() {
   // 고정 확장자 렌더링 로직
-
-  const [fixedCustom, setFixedCustom] = useState([]);
-  axios
-    .get(`${process.env.REACT_APP_DEV_HOST}/api/extensions/fixed`)
-    .then((res) => {
-      setFixedCustom(res.data.data);
-    });
-
-  // const FixedExtension = ExtensionList.map((name) => (
-  //   <FixedExtensionCheckBox
-  //     key={name}
-  //     value={name}
-  //     checked={localStorage.getItem(name) != null}
-  //   ></FixedExtensionCheckBox>
-  // ));
   const FixedExtension = ExtensionList.map((name) => (
     <FixedExtensionCheckBox
       key={name}
       value={name}
-      checked={fixedCustom.includes(name)}
+      checked={localStorage.getItem(name) != null}
     ></FixedExtensionCheckBox>
   ));
 
@@ -122,7 +107,7 @@ function ExtensionBlocker() {
       .catch((err) => {
         console.log("커스텀 확장자 개수 조회를 실패했습니다.\n" + err);
       });
-  }, [count]);
+  }, []);
 
   // 커스텀 확장자 리스트 조회 로직
   const [customList, setCustomList] = useState([]);
@@ -192,13 +177,7 @@ function ExtensionBlocker() {
               value={text}
               onChange={onChange}
             ></CustomInput>
-            <CustomButton
-              onClick={() => {
-                onClick();
-              }}
-            >
-              +추가
-            </CustomButton>
+            <CustomButton onClick={onClick}>+추가</CustomButton>
           </CustomInputContainer>
 
           {/* 커스텀 확장자 저장 컨테이너 */}

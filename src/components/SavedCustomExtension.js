@@ -33,13 +33,13 @@ const Img = styled.img`
 `;
 
 function SavedCustomExtension(props) {
-  const [count, setCount] = useState(props.count);
-
   const deleteCustom = () => {
     axios
       .delete(`${process.env.REACT_APP_DEV_HOST}/api/extensions/${props.id}`)
       .then((res) => {
-        if (res.data.code === "S0001") setCount(count - 1);
+        if (res.data.code === "S0001") {
+          props.setCount(props.count - 1);
+        }
       })
       .catch((err) => {
         console.log("커스텀 확장자 삭제를 실패했습니다." + err);
@@ -52,7 +52,6 @@ function SavedCustomExtension(props) {
       <CancelButton
         onClick={() => {
           deleteCustom();
-          props.setCount(count);
         }}
       >
         <Img src={cancelImg} alt="cancelImg"></Img>
