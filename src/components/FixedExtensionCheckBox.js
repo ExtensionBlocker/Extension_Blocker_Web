@@ -36,6 +36,7 @@ function FixedExtensionCheckBox(props) {
           window.localStorage.removeItem(name);
         })
         .catch((err) => {
+          setCheck(false);
           console.log("고정 확장자를 삭제할 수 없습니다.\n" + err);
         });
     } else {
@@ -52,6 +53,7 @@ function FixedExtensionCheckBox(props) {
           );
         })
         .catch((err) => {
+          setCheck(false);
           console.log("고정확장자를 추가할 수 없습니다.\n" + err);
         });
     }
